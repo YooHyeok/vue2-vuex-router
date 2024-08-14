@@ -1,6 +1,6 @@
 # vuex & router - 로그인 상태 관리 하기
 
-## *Install*
+## *Vue-Install*
 <details>
 <summary>펼치기/접기</summary>
 <br>
@@ -121,3 +121,60 @@
   ```
 
 </details>
+
+
+## *Vuetify-install*
+<details>
+<summary>펼치기/접기</summary>
+<br>
+  ```bash
+  vue add vuetify
+  ```
+
+  ```
+  ✔  Successfully installed plugin: vue-cli-plugin-vuetify
+
+  ? Choose a preset:
+  > Vuetify 2 - Configure Vue CLI (advanced)
+    Vuetify 2 - Vue CLI (recommended)
+    Vuetify 2 - Prototype (rapid development)
+    Vuetify 3 - Vite (preview)
+    Vuetify 3 - Vue CLI (preview)
+  ```
+  ```
+  ? Use a pre-made template? (will replace App.vue and HelloWorld.vue) (Y/n) Y
+  ```
+  ```
+  ? Use custom theme? (y/N) N
+  ```
+  ```
+  ? Use custom properties (CSS variables)? N
+  ```
+  ```
+  ? Select icon font
+    Material Design Icons
+    Material Icons
+  > Font Awesome 5
+    Font Awesome 4
+  ```
+  ```
+  ? Use fonts as a dependency (for Electron or offline)? (y/N) N
+  ```
+  ```
+  ? Use a-la-carte components? (Y/n) N
+  ```
+  ```
+  ? Use babel/polyfill? (Y/n) Y
+  ```
+  ```
+  ? Select locale (Use arrow keys)
+  > English 
+    Estonian 
+    Farsi 
+    Finnish 
+    Greek 
+    French
+    Croatian
+  (Move up and down to reveal more choices)
+  ```
+  </details>
