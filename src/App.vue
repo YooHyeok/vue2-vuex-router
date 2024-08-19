@@ -28,6 +28,13 @@
     <v-app-bar color="indigo" dark fixed app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text v-if="isLogin">웰컴</v-btn>
+        <v-btn text v-else router :to="{ name: 'login' }">
+          Login
+        </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
     <v-main>
       <router-view/>
@@ -39,7 +46,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
   export default {
     data: () => ({ drawer: null }),
+    computed: {
+      ...mapState(["isLogin"])
+    }
   }
 </script>
