@@ -37,7 +37,7 @@
             block 
             depressed 
             large
-            @click="login()"
+            @click="login({email, password})"
           >
             로그인
           </v-btn>
@@ -50,21 +50,29 @@
   </div>
 </template>
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
   data() {
     return {
       email: null,
       password: null,
-      allUsers: [
+      /* allUsers: [
         {id: 1, name: 'YooHyeokSchool', email: 'webdevyoo@gmail.com', password: '123qwe'},
         {id: 1, name: 'Codeaholic', email: 'Codeaholic@gmail.com', password: '123qwe'}
       ],
       isError: false,
-      loginSuccess: false
+      loginSuccess: false */
     }
   },
+  computed: {
+    ...mapState({
+      loginSuccess:'isLogin',
+      isError:'loginError'
+    })
+  },
   methods: {
-    login() {
+    ...mapActions(['login']),
+    /* login() {
       let selectedUser = null;
       // 1. 전체 회원에서 해당 이메일로 회원 탐색한다.
       this.allUsers.forEach(user => {
@@ -80,7 +88,7 @@ export default {
       this.isError = selectedUser.password !== this.password ? true : false
       this.loginSuccess = !this.isError
       console.log(this.email, this.password)
-    }
+    } */
   }
 }
 </script>
