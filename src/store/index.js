@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import router from "../router";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    userInfo: null,
     allUsers: [
       { id: 1, name: 'YooHyeokSchool', email: 'webdevyoo@gmail.com', password: '123qwe' },
       { id: 1, name: 'Codeaholic', email: 'Codeaholic@gmail.com', password: '123qwe' }
@@ -16,7 +18,8 @@ export default new Vuex.Store({
   mutations: { // 상태 값 변화
 
     // 로그인 성공
-    loginSuccess(state) {
+    loginSuccess(state, payload) {
+      state.userInfo = payload
       state.isLogin = true;
       state.isLoginError = false;
     },
@@ -39,10 +42,17 @@ export default new Vuex.Store({
       })
       // 2. 탐색한 회원의 비밀번호와 입력된 비밀번호를 비교
       // 3. 두 조건이 모두 true 일 경우 로그인 성공
-      const commitMsg = selectedUser === null || 
+      /* const commitMsg = selectedUser === null || 
       selectedUser.password !== payload.password ? 
-      'loginFailed' : 'loginSuccess'
-      commit(commitMsg)
+      "loginFailed" : "loginSuccess"
+      commit(commitMsg) */
+
+      if (selectedUser === null || selectedUser.password !== payload.password ) {
+        commit("loginFailed")
+        return
+      }
+      commit("loginSuccess", selectedUser)
+      router.push({ name: "mypage" })
     }
   },
   modules: {}
