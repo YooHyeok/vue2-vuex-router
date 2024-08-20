@@ -67,7 +67,7 @@ export default {
   computed: {
     ...mapState({
       loginSuccess:'isLogin',
-      isError:'loginError'
+      isError:'isLoginError'
     })
   },
   methods: {
