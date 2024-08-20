@@ -10,7 +10,7 @@ export default new Vuex.Store({
       { id: 1, name: 'Codeaholic', email: 'Codeaholic@gmail.com', password: '123qwe' }
     ],
     isLogin: false,
-    loginError: false
+    isLoginError: false
   },
   getters: {},
   mutations: { // 상태 값 변화
@@ -18,12 +18,12 @@ export default new Vuex.Store({
     // 로그인 성공
     loginSuccess(state) {
       state.isLogin = true;
-      state.loginError = false;
+      state.isLoginError = false;
     },
     // 로그인 실패
     loginFailed(state) {
       state.isLogin = false;
-      state.loginError = true;
+      state.isLoginError = true;
     }
 
   },
