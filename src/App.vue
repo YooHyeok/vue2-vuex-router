@@ -6,7 +6,7 @@
       app
     >
     <v-list dense>
-      <v-list-item router :to="{name: 'home'}">
+      <v-list-item router :to="{name: 'home'}" exact>
         <v-list-item-action>
           <v-icon>home</v-icon>
         </v-list-item-action>
@@ -14,7 +14,7 @@
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item v-if="isLogin === false" router :to="{name: 'login'}">
+      <v-list-item v-if="isLogin === false" router :to="{name: 'login'}" exact>
         <v-list-item-action>
           <v-icon>login</v-icon>
         </v-list-item-action>
@@ -22,7 +22,7 @@
           <v-list-item-title>로그인</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item v-if="isLogin === true" router :to="{name: 'mypage'}">
+      <v-list-item v-if="isLogin === true" router :to="{name: 'mypage'}" exact>
         <v-list-item-action>
           <v-icon>mypage</v-icon>
         </v-list-item-action>
