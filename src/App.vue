@@ -54,7 +54,7 @@
               <v-list-item-title>마이페이지</v-list-item-title>
             </v-list-item>
             <v-list-item>
-              <v-list-item-title @click="logout">로그아웃</v-list-item-title>
+              <v-list-item-title @click="/*logout*/ $store.dispatch('logout')">로그아웃</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
