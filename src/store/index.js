@@ -61,7 +61,8 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       commit("logout")
-      router.push({ name: "home" })
+      // router.push({ name: "home" })
+      router.push({ name: "home" }).catch(()=> {}); // Avoided redundant 대응 - catch구문
     }
   },
   modules: {}
