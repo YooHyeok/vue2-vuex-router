@@ -38,7 +38,26 @@
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn text v-if="isLogin">웰컴</v-btn>
+        <v-menu offset-y v-if="isLogin">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              icon
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon small>fa-ellipsis-v</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item  router :to="{ name: 'mypage' }" exact>
+              <v-list-item-title>마이페이지</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title @click="logout">로그아웃</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
         <v-btn text v-else router :to="{ name: 'login' }">
           Login
         </v-btn>
@@ -54,11 +73,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
   export default {
     data: () => ({ drawer: null }),
     computed: {
       ...mapState(["isLogin"])
+    },
+    methods: {
+      ...mapActions(["logout"])
     }
   }
 </script>
