@@ -41,7 +41,8 @@
           >
             로그인
           </v-btn>
-          <v-btn block @click="test">FakeServer 테스트</v-btn>
+          <v-btn block @click="getTest">FakeServer get 테스트</v-btn>
+          <v-btn block @click="postTest">FakeServer post 테스트</v-btn>
           </div>
         </v-card>
       </v-flex>
@@ -92,16 +93,31 @@ export default {
       this.loginSuccess = !this.isError
       console.log(this.email, this.password)
     } */
-   test() {
-    axios.get("https://reqres.in/api/users?page=2")
-    .then(function(response){
-      console.log(response)
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-    .then(function(){
-    })
+   getTest() {
+    axios
+      .get("https://reqres.in/api/users?page=2")
+        .then(function(response){
+          console.log(response)
+        })
+        .catch(function(error){
+          console.log(error)
+        })
+        .then(function(){
+          console.log(":then:")
+        })
+   },
+   postTest() {
+    axios
+      .post("https://reqres.in/api/register", {
+          email: "webdevyoo@gmail.com",
+          pasword: "123qwe" // 해당 필드가 없으면 400Error가 출력된다.
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error=> {
+          console.log(error)
+        })
    }
   }
 }
