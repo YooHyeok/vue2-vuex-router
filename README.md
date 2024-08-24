@@ -178,3 +178,9 @@
   (Move up and down to reveal more choices)
   ```
   </details>
+
+
+# ReqRes - FakeServer
+[reqres 링크](https:reqres.in)  
+Fake Server의 하나이다.
+해당 페이지에서 지원하는 api의 요청 method와 path에 요청을하면 더미 데이터를 제공받을 수 있다.
