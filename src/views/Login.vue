@@ -41,6 +41,7 @@
           >
             로그인
           </v-btn>
+          <v-btn block @click="test">FakeServer 테스트</v-btn>
           </div>
         </v-card>
       </v-flex>
@@ -51,6 +52,8 @@
 </template>
 <script>
 import {mapState, mapActions} from 'vuex'
+// const axios = require("axios")
+import axios from "axios"
 export default {
   data() {
     return {
@@ -89,6 +92,17 @@ export default {
       this.loginSuccess = !this.isError
       console.log(this.email, this.password)
     } */
+   test() {
+    axios.get("https://reqres.in/api/users?page=2")
+    .then(function(response){
+      console.log(response)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+    .then(function(){
+    })
+   }
   }
 }
 </script>
