@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
+import axios from "axios"
 
 Vue.use(Vuex);
 
@@ -38,8 +39,43 @@ export default new Vuex.Store({
 
   actions: {
     // 로그인 시도 => 성공 / 실패 호출
-    login({ state, commit }, payload) {
-      console.log(payload)
+    login({ commit }, payload) {
+      // eve.holt@reqres.in
+      // cityslicka
+      axios.post("https://reqres.in/api/login", payload)
+        .then(res => {
+          console.log(res)
+          let { data: {token} } = res;
+
+          let config = {
+            headers: {
+              "access-token": token
+            }
+          }
+          /* 회원 정보 조회 */
+          axios.get("https://reqres.in/api/users/2", config)
+            .then(res => {
+              let { data: {data} } = res;
+              let userInfo = {
+                id: data.id,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                avatar: data.avatar,
+              }
+              console.log(userInfo)
+              commit("loginSuccess", userInfo)
+              router.push({ name: "mypage" })
+            })
+            .catch(error=> {
+              alert();
+            })
+        })
+        .catch(error=> {
+          console.log(error)
+        })
+    },
+
+    login_deprecated({ state, commit }, payload) {
       let selectedUser = null;
       // 1. 전체 회원에서 해당 이메일로 회원 탐색한다.
       state.allUsers.forEach(user => {
