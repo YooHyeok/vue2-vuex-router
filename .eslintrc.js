@@ -12,16 +12,18 @@ module.exports = {
     parser: "@babel/eslint-parser",
   },
   rules: {
-    "vue/multi-word-component-names": 0,
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "prettier/prettier": [
+    "vue/multi-word-component-names": 0,
+    'no-unused-vars': 'warn',
+    "prettier/prettier": "off"
+    /* "prettier/prettier": [
       "warn",
       {
         endOfLine: 'auto',
         "semi": false,
         "trailingComma": "none",
       }
-    ]
+    ] */
   },
 };
