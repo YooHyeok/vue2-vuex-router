@@ -109,8 +109,8 @@ export default {
    postTest() {
     axios
       .post("https://reqres.in/api/register", {
-          email: "webdevyoo@gmail.com",
-          pasword: "123qwe" // 해당 필드가 없으면 400Error가 출력된다.
+          email: "eve.holt@reqres.in",
+          password: "cityslicka" // 해당 필드가 없으면 400Error가 출력된다.
         })
         .then(res => {
           console.log(res)
