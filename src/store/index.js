@@ -46,33 +46,34 @@ export default new Vuex.Store({
         .then(res => {
           console.log(res)
           let { data: {token} } = res;
-
-          let config = {
-            headers: {
-              "access-token": token
-            }
-          }
-          /* 회원 정보 조회 */
-          axios.get("https://reqres.in/api/users/2", config)
-            .then(res => {
-              let { data: {data} } = res;
-              let userInfo = {
-                id: data.id,
-                first_name: data.first_name,
-                last_name: data.last_name,
-                avatar: data.avatar,
-              }
-              console.log(userInfo)
-              commit("loginSuccess", userInfo)
-              router.push({ name: "mypage" })
-            })
-            .catch(error=> {
-              alert();
-            })
+          this.dispatch("getMemberInfo",token)
         })
         .catch(error=> {
           console.log(error)
         })
+    },
+    getMemberInfo({commit}, payload) {
+      let config = {
+        headers: {
+          "access-token": payload
+        }
+      }
+      axios.get("https://reqres.in/api/users/2", config)
+      .then(res => {
+        let { data: {data} } = res;
+        let userInfo = {
+          id: data.id,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          avatar: data.avatar,
+        }
+        console.log(userInfo)
+        commit("loginSuccess", userInfo)
+        router.push({ name: "mypage" })
+      })
+      .catch(error=> {
+        alert("이메일괴 비밀번호를 확인하세요.");
+      })
     },
 
     login_deprecated({ state, commit }, payload) {
