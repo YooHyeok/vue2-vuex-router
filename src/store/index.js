@@ -46,16 +46,18 @@ export default new Vuex.Store({
         .then(res => {
           console.log(res)
           let { data: {token} } = res;
-          this.dispatch("getMemberInfo",token)
+          localStorage.setItem("access-token", token)
+          this.dispatch("getMemberInfo")
         })
         .catch(error=> {
           console.log(error)
         })
     },
-    getMemberInfo({commit}, payload) {
+    getMemberInfo({commit}) {
+      let token = localStorage.getItem("access-token")
       let config = {
         headers: {
-          "access-token": payload
+          "access-token": token
         }
       }
       axios.get("https://reqres.in/api/users/2", config)
