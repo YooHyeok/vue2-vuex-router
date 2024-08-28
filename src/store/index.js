@@ -38,23 +38,9 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // 로그인 시도 => 성공 / 실패 호출
-    login({ commit }, payload) {
-      // eve.holt@reqres.in
-      // cityslicka
-      axios.post("https://reqres.in/api/login", payload)
-        .then(res => {
-          console.log(res)
-          let { data: {token} } = res;
-          localStorage.setItem("access-token", token)
-          this.dispatch("getMemberInfo")
-        })
-        .catch(error=> {
-          console.log(error)
-        })
-    },
     getMemberInfo({commit}) {
       let token = localStorage.getItem("access-token")
+      if(token == null) return;
       let config = {
         headers: {
           "access-token": token
@@ -77,7 +63,26 @@ export default new Vuex.Store({
         alert("이메일괴 비밀번호를 확인하세요.");
       })
     },
-
+    // 로그인 시도 => 성공 / 실패 호출
+    login({ commit }, payload) {
+      // eve.holt@reqres.in
+      // cityslicka
+      axios.post("https://reqres.in/api/login", payload)
+        .then(res => {
+          console.log(res)
+          let { data: {token} } = res;
+          localStorage.setItem("access-token", token)
+          this.dispatch("getMemberInfo")
+        })
+        .catch(error=> {
+          console.log(error)
+        })
+    },
+    logout({ commit }) {
+      localStorage.removeItem("access-token")
+      commit("logout")
+      router.push({ name: "home" }).catch(()=> {}); // Avoided redundant 대응 - catch구문
+    },
     login_deprecated({ state, commit }, payload) {
       let selectedUser = null;
       // 1. 전체 회원에서 해당 이메일로 회원 탐색한다.
@@ -98,7 +103,7 @@ export default new Vuex.Store({
       commit("loginSuccess", selectedUser)
       router.push({ name: "mypage" })
     },
-    logout({ commit }) {
+    logout_deprecated({ commit }) {
       commit("logout")
       // router.push({ name: "home" })
       router.push({ name: "home" }).catch(()=> {}); // Avoided redundant 대응 - catch구문
