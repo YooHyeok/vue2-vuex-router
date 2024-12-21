@@ -127,6 +127,7 @@
 <details>
 <summary>펼치기/접기</summary>
 <br>
+  
   ```bash
   vue add vuetify
   ```
